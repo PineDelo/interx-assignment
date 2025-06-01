@@ -1,0 +1,70 @@
+@import "antd/dist/reset.css";
+@import "tailwindcss";
+
+/* 글로벌 root 설정 */
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ant Design Header 스타일 오버라이드 */
+.ant-layout-header {
+  padding-inline: 0 !important;
+}
+
+/* 기본 HTML 요소 설정 (Tailwind 사용으로 간소화됨) */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+/* 기본 텍스트 스타일 */
+a {
+  @apply font-medium text-indigo-400 no-underline;
+}
+
+a:hover {
+  @apply text-indigo-500;
+}
+
+/* 버튼 스타일 */
+button {
+  @apply cursor-pointer rounded-lg border border-transparent px-4 py-2 text-base font-medium transition-colors;
+  background-color: #1a1a1a;
+}
+
+button:hover {
+  border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* 라이트 모드 대응 (Tailwind 클래스 기반으로 전환 권장) */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  a:hover {
+    color: #747bff;
+  }
+
+  button {
+    background-color: #f9f9f9;
+  }
+}
