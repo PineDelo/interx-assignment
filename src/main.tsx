@@ -19,7 +19,14 @@ if (!rootElement) {
 
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <ConfigProvider locale={koKR}>
+    <ConfigProvider
+      locale={koKR}
+      theme={{
+        token: {
+          colorPrimary: "#FD6B09",
+        },
+      }}
+    >
       <App className="h-full">
         <RouterProvider router={router} />
       </App>
