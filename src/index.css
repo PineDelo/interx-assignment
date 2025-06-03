@@ -15,27 +15,8 @@ body,
   height: 100%;
 }
 
-/* 기본 텍스트 스타일 */
-a {
-  @apply font-medium text-indigo-400 no-underline;
-}
-
-a:hover {
-  @apply text-indigo-500;
-}
-
-/* 버튼 스타일 */
-button {
-  @apply cursor-pointer rounded-lg border border-transparent px-4 py-2 text-base font-medium transition-colors;
-}
-
 button:hover {
   border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .ant-layout-header {

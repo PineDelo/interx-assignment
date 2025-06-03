@@ -1,54 +1,68 @@
-# React + TypeScript + Vite
+# InterX Chatbot
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+인터엑스 챗봇 프로젝트입니다.
+(❗️회사 이미지(로고, favicon 등)을 잠시 저장하여 사용하였습니다.
+프로젝트 제출용으로 잠시 사용했으며 추후 삭제 예정이니 양해 부탁드립니다 🙏)
 
-Currently, two official plugins are available:
+## 기술 스택
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React + TypeScript
+- Vite
+- Ant Design
+- Zustand
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## 시작하기
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 1. 저장소 클론
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/your-username/interx-assignment.git
+cd interx-assignment
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. pnpm 설치
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+# pnpm이 설치되어 있지 않은 경우
+npm install -g pnpm
 ```
+
+### 3. 의존성 설치
+
+```bash
+pnpm install
+```
+
+### 4. 환경 변수 설정
+
+프로젝트 루트 디렉토리에 `.env.local` 파일을 생성하고 다음 환경 변수들을 설정해주세요:
+
+```env
+# API 엔드포인트
+VITE_API_URL=https://api.openai.com/v1/chat/completions
+
+# OpenAI API 키
+VITE_OPENAI_API_KEY=your-api-key-here
+
+# 사용할 AI 모델
+VITE_INTERX_MODEL=gpt-3.5-turbo
+
+# STORAGE KEY
+VITE_INTERX_STORAGE_KEY=CHAT-CONTENT
+```
+
+### 5. 개발 서버 실행
+
+```bash
+pnpm dev
+```
+
+개발 서버가 실행되면 기본적으로 `http://localhost:5173`에서 접속할 수 있습니다.
+
+## 주요 기능
+
+- 다크/라이트 모드 지원
+- 실시간 채팅 인터페이스
+- 반응형 디자인
+- 커스텀 테마 설정

@@ -1,48 +1,80 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
+import type { ChatProps, SidebarProps } from "@/types";
+import { MenuFoldOutlined } from "@ant-design/icons";
 import { Layout } from "antd";
+import { useEffect, useState } from "react";
 import logoHd from "../assets/logo-hd.png";
 import logoWhite from "../assets/logo-white.png";
 import { useThemeStore } from "../store/themeStore";
 
 const { Sider } = Layout;
+const STORAGE_KEY = import.meta.env.VITE_INTERX_STORAGE_KEY;
 
-const Sidebar = () => {
-  const { theme, toggleTheme } = useThemeStore();
+const Sidebar: React.FC<SidebarProps> = ({
+  isSidebarOpen,
+  setIsSidebarOpen,
+}) => {
+  const { theme, sidebarTheme } = useThemeStore();
+  const [savedChat, setSavedChat] = useState<ChatProps[]>([]);
+
+  useEffect(() => {
+    const savedChat = localStorage.getItem(STORAGE_KEY);
+    if (savedChat) {
+      setSavedChat(JSON.parse(savedChat));
+      console.log("저장된 채팅 내용:", JSON.parse(savedChat));
+    }
+  }, []);
 
   return (
     <Sider
       collapsible={false}
-      theme={theme === "dark" ? "dark" : "light"}
       width={260}
-      className={`flex h-full flex-col`}
+      style={{
+        backgroundColor: theme === "dark" ? "#181818" : sidebarTheme,
+        transition: "all 0.3s ease-in-out",
+        position: "relative",
+        height: "100%",
+      }}
     >
       <div className="flex h-full flex-col">
-        <div className="flex items-center justify-between p-4 align-middle">
+        <div
+          className={`content-box flex h-14 items-center justify-between border-b border-[#e0e0e0] p-4 align-middle ${theme === "dark" ? "bg-[181818] text-white" : "bg-white text-black"}`}
+        >
           <img
             className="h-6 w-32"
             src={theme === "dark" ? logoWhite : logoHd}
             alt="logo"
-            // className="h-8 w-auto"
           />
-          {/* <Button
-            onClick={toggleTheme}
-            type="text"
-            className="hover:bg-opacity-10 rounded-full !border-0 !shadow-none"
-            
-          > */}
-          {theme === "dark" ? (
-            <MenuFoldOutlined
-              className="text-3xl hover:opacity-50"
-              onClick={toggleTheme}
-            />
-          ) : (
-            <MenuUnfoldOutlined
-              className="text-3xl hover:opacity-50"
-              onClick={toggleTheme}
-            />
+          <MenuFoldOutlined
+            className={`text-2xl hover:opacity-50`}
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          />
+        </div>
+        <div className="flex-1 overflow-y-auto p-4">
+          <p>최근 대화</p>
+          {savedChat.map((message, idx) =>
+            message.role === "user" ? (
+              <div
+                key={idx}
+                className={`mb-2 rounded-lg p-2 ${
+                  theme === "dark" ? "bg-white/10" : "bg-black/10"
+                }`}
+              >
+                <div className="text-xs font-medium">
+                  {message.role === "user" ? "사용자" : "시스템"}
+                </div>
+                <div
+                  className={`text-sm ${
+                    theme === "dark" ? "text-white/80" : "text-black/80"
+                  }`}
+                >
+                  {message.content}
+                </div>
+              </div>
+            ) : (
+              ""
+            ),
           )}
         </div>
-        <div className="flex-1" />
         <div
           className={`border-t ${
             theme === "dark" ? "border-white/20" : "border-black/20"
@@ -55,13 +87,17 @@ const Sidebar = () => {
               }`}
             ></div>
             <div className="flex-1">
-              <div className="text-sm font-medium">User Name</div>
+              <div
+                className={`text-sm font-medium ${theme === "dark" ? "text-white/80" : "text-black/80"}`}
+              >
+                박태준
+              </div>
               <div
                 className={`text-xs ${
                   theme === "dark" ? "text-white/80" : "text-black/80"
                 }`}
               >
-                user@example.com
+                pinedelo30@gmail.com
               </div>
             </div>
           </div>
