@@ -17,7 +17,7 @@
 ### 1. 저장소 클론
 
 ```bash
-git clone https://github.com/your-username/interx-assignment.git
+git clone git clone https://github.com/your-username/interx-assignment.git
 cd interx-assignment
 ```
 
