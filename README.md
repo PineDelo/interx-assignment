@@ -4,11 +4,6 @@
 (❗️회사 이미지(로고, favicon 등)을 잠시 저장하여 사용하였습니다.
 프로젝트 제출용으로 잠시 사용했으며 추후 삭제 예정이니 양해 부탁드립니다 🙏)
 
-## 프로젝트 개요
-
-제공된 LLM API 키와 LLM 모델을 사용하여 단일 챗봇 대화 UI를 구현한 프로젝트입니다.
-사용자는 메시지를 입력하고, LLM 모델로부터 답변을 받아 실시간으로 주고받을 수 있습니다.
-
 ## 기술 스택
 
 - React + TypeScript
@@ -68,12 +63,12 @@ pnpm dev
 ### 주요 기능
 
 - 메시지 입력 및 전송 (Enter 키 또는 버튼 클릭)
-- LLM API 연동 및 실시간 응답 출력
-- 로딩 상태 표시
-- 에러 처리 및 fallback 메시지
+- LLM API 연동 및 실시간 응답 출력 (async/await 비동기 관리)
+- 로딩 상태 표시 (loading을 state로 관리)
+- 에러 처리 및 fallback 메시지 (Ant-Design의 Alert을 활용하여 표시)
 - Markdown 렌더링 (react-markdown, remark-gfm)
-- 실시간 타이핑 효과
-- 다크/라이트 모드
-- 반응형 디자인
-- 커스텀 테마 설정
+- 실시간 타이핑 효과 (setInterval 함수 사용)
+- 다크/라이트 모드 (zustand로 전역변수화하여 관리)
+- 반응형 디자인 (Ant-Design & tailwindcss)
+- 커스텀 테마 설정 (color-picker)
 - 타임스탬프 표시
