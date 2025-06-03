@@ -115,9 +115,10 @@ const Home: React.FC = () => {
           timestamp,
         },
       ]);
+
+      setAlertError();
     } finally {
       setIsLoading(false);
-      setAlertError();
     }
   };
 
